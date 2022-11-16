@@ -9,10 +9,15 @@ const Altceva = () => {
     const [logat] = useAtom(state.logat);
 
     const array = ["a", "b", "c", "d"]
-        .map((l, i) => ({
-            [l]: Math.pow(i + 1, 2),
-        }))
-        .reduce((accumulator, value) => ({ ...accumulator, ...value }), {});
+        .map((e, i, a) =>
+            e === "c" ? [...a.slice(0, i), ...a.slice(i + 1)] : null
+        )
+        .filter((x) => !!x)
+        .reduce((a, v) => a.concat(v), []);
+    // .map((l, i) => ({
+    //     [l]: Math.pow(i + 1, 2),
+    // }))
+    // .reduce((accumulator, value) => ({ ...accumulator, ...value }), {});
 
     console.log(array);
 
