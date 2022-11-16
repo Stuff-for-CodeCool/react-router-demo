@@ -7,15 +7,22 @@ const Altceva = () => {
     const altcevaRef = useRef(null);
     const [posts, setPosts] = useState(null);
     const [logat] = useAtom(state.logat);
-    
+
+    const array = ["a", "b", "c", "d"]
+        .map((l, i) => ({
+            [l]: Math.pow(i + 1, 2),
+        }))
+        .reduce((accumulator, value) => ({ ...accumulator, ...value }), {});
+
+    console.log(array);
 
     const loader = async () => {
         const req = await fetch("https://jsonplaceholder.typicode.com/todos/");
         const res = await req.json();
         setPosts(res);
 
-        const [ userId, title ] = res;
-        
+        const [userId, title] = res;
+
         console.log(userId);
         console.log(title);
     };
